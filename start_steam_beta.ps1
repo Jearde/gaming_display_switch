@@ -6,7 +6,7 @@ if ($steam) {
   # try gracefully first
   $steam.CloseMainWindow()
   # kill after five seconds
-  Sleep 5
+  Start-Sleep 5
   if (!$steam.HasExited) {
     $steam | Stop-Process -Force
   }
