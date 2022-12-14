@@ -14,8 +14,11 @@ if( $SEL -imatch "ON" )
     Write-Host 'Turning tv off'
     $SEL = "OFF"
     $SEL | Out-File tv_state.txt
+    MultiMonitorTool.exe /TurnOn $monitor
+    MultiMonitorTool.exe /TurnOn $monitor
     MultiMonitorTool.exe /SetPrimary $monitor
     Start-Sleep -Seconds 5
+    MultiMonitorTool.exe /TurnOff  $tv
     MultiMonitorTool.exe /disable $tv
 }
 else
@@ -24,7 +27,10 @@ else
     $SEL = "ON"
     $SEL | Out-File tv_state.txt
     MultiMonitorTool.exe /enable $tv
+    MultiMonitorTool.exe /TurnOn $tv
     Start-Sleep -Seconds 5
     MultiMonitorTool.exe /SetPrimary $tv
+    MultiMonitorTool.exe /TurnOff $monitor
+    MultiMonitorTool.exe /TurnOff $monitor
 }
 Exit
