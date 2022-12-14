@@ -15,6 +15,7 @@ When the last TV state is ON, it will close Steam, set my PC monitor as primary 
 
 ## How to use
 
+0. Switch to [Steam Client Beta](https://help.steampowered.com/en/faqs/view/276C-85A0-C531-AFA3#:~:text=With%20Steam%20running%2C%20click%20on,list%20and%20click%20%22OK%22.) for using the new Big Picture Mode. Otherwise change "-gamepadui" to "-tenfoot" in the start_steam_beta.ps1 file.
 1. Download the free [MultiMonitorTool](https://www.nirsoft.net/utils/multi_monitor_tool.html) from NirSoft ([Direct Download multimonitortool-x64.zip](https://www.nirsoft.net/utils/multimonitortool-x64.zip))
 2. Extract the zip file to a folder of your choice
 3. Clone this repo to the same folder
