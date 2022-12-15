@@ -7,6 +7,7 @@ $SEL = get-content tv_state.txt
 
 # Edit here to match your monitor names
 $monitor = "\\.\DISPLAY2"
+$monitor2 = "\\.\DISPLAY1"
 $tv = "\\.\DISPLAY3"
 
 $displays = [System.Windows.Forms.Screen]::AllScreens
@@ -33,7 +34,7 @@ if( $SEL -imatch "ON" )
     $SEL = "OFF"
     $SEL | Out-File tv_state.txt
     MultiMonitorTool.exe /TurnOn $monitor
-    MultiMonitorTool.exe /TurnOn $monitor
+    MultiMonitorTool.exe /TurnOn $monitor2
     MultiMonitorTool.exe /SetPrimary $monitor
     Start-Sleep -Seconds 5
     MultiMonitorTool.exe /TurnOff  $tv
@@ -49,6 +50,6 @@ else
     Start-Sleep -Seconds 5
     MultiMonitorTool.exe /SetPrimary $tv
     MultiMonitorTool.exe /TurnOff $monitor
-    MultiMonitorTool.exe /TurnOff $monitor
+    MultiMonitorTool.exe /TurnOff $monitor2
 }
 Exit
