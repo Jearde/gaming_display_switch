@@ -9,6 +9,24 @@ $SEL = get-content tv_state.txt
 $monitor = "\\.\DISPLAY2"
 $tv = "\\.\DISPLAY3"
 
+$displays = [System.Windows.Forms.Screen]::AllScreens
+
+Foreach ($i in $displays)
+{
+    $device = $i.DeviceName
+    if( ($i.DeviceName -eq "$tv") -and ($i.Primary) )
+    {
+        Write-Host "Primary TV: $device"
+        $SEL = "ON"
+    }
+    elseif ($i.Primary)
+    {
+        Write-Host "Primary Monitor: $device"
+        $SEL = "OFF"
+    }
+    $SEL | Out-File tv_state.txt
+}
+
 if( $SEL -imatch "ON" )
 {
     Write-Host 'Turning tv off'
