@@ -21,10 +21,27 @@ When the last TV state is ON, it will close Steam, set my PC monitor as primary 
 3. Clone this repo to the same folder
 4. Edit the start_steam_beta.ps1 file and change the path to your steam.exe (Default: "C:\Program Files (x86)\Steam\steam.exe")
 5. Edit the toggle_monitor.ps1 file and change the IDs of your monitors
+    * To find what ID your monitors have, run the `MultiMonitorTool.exe` and look at the "Name" column
 6. Edit "Display Toggle.Ink" and change the path to the main.ps1 file
 
 ## Content of shortcut
 
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File C:\MultiMonitorTool\main.ps1
+```
+
+## Startup script
+For automatically starting a powershell script on boot, copy the startup.cmd to: 
+```
+%AppData%\Microsoft\Windows\Start Menu\Programs\Startup\startup.cmd
+C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\startup.cmd
+
+Win + R -> gpedit.msc -> Computer Configuration > Windows Settings > Scripts (Startup/Shutdown) and select Startup -> Add -> Browse -> Select the startup.cmd file
+```
+or
+
+$trigger = New-JobTrigger -AtStartup -RandomDelay 00:00:15
+Register-ScheduledJob -Trigger $trigger -FilePath D:\MultiMonitorTool\startup\startup.ps1 -Name TurnOnScreen
+Get-Job
+Unregister-ScheduledJob -Id 1
 ```
